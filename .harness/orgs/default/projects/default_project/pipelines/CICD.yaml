@@ -33,16 +33,6 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: Run
-                  name: Maven Build
-                  identifier: Maven_Build
-                  spec:
-                    connectorRef: account.harnessImage
-                    image: maven:3.9.6-eclipse-temurin-17
-                    shell: Sh
-                    command: mvn clean install -DskipTests
-                  description: Maven Build
-              - step:
                   type: BuildAndPushDockerRegistry
                   name: Build And Push Docker Registry
                   identifier: Build_And_Push_Docker_Registry
