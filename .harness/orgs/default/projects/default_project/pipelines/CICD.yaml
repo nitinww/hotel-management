@@ -4,12 +4,6 @@ pipeline:
   projectIdentifier: default_project
   orgIdentifier: default
   tags: {}
-  properties:
-    ci:
-      codebase:
-        connectorRef: github
-        repoName: hotel-management
-        build: <+input>
   stages:
     - stage:
         name: build
@@ -28,17 +22,21 @@ pipeline:
             arch: Amd64
           runtime:
             type: Docker
-            spec:
-              harnessImageConnectorRef: account.harnessImage
+            spec: {}
           execution:
             steps:
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: Build And Push Docker Registry
-                  identifier: Build_And_Push_Docker_Registry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    connectorRef: account.harnessImage
+                    connectorRef: docker
                     repo: hotel-management:latest
                     tags:
                       - +pipeline.sequenceId
-                    caching: true
+  properties:
+    ci:
+      codebase:
+        connectorRef: github
+        repoName: hotel-management
+        build: <+input>
