@@ -1,0 +1,44 @@
+pipeline:
+  name: CICD
+  identifier: CICD
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: github
+        repoName: hotel-management
+        build: <+input>
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Windows
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec:
+              harnessImageConnectorRef: account.harnessImage
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Maven Build
+                  identifier: Maven_Build
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: maven:3.8.6-openjdk-11
+                    shell: Sh
+                    command: mvn clean install -DskipTests
+                  description: Maven Build
