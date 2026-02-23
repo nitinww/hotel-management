@@ -31,7 +31,7 @@ pipeline:
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: docker
-                    repo: hotel-management:latest
+                    repo: nitinww/hotel-management
                     tags:
                       - +pipeline.sequenceId
   properties:
