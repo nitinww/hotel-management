@@ -33,7 +33,7 @@ pipeline:
                     connectorRef: docker
                     repo: hotel-management
                     tags:
-                      - +pipeline.sequenceId
+                      - v1
   properties:
     ci:
       codebase:
