@@ -38,7 +38,7 @@ pipeline:
                   identifier: Build_And_Push_Docker_Registry
                   spec:
                     connectorRef: account.harnessImage
-                    repo: nitinww/hotel-management:latest
+                    repo: hotel-management:latest
                     tags:
                       - +pipeline.sequenceId
                     caching: true
